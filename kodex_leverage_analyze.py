@@ -42,4 +42,16 @@ print(df.head(3))
 print('\n', df.tail(3))
 
 
+# 누적 외국인순매매량을 DataFrame에 새로운 열로 추가
+new_column = range(len(df['종가']))
+df['누적_외국인순매매량'] = new_column
 
+# 누적  외국인순매매량 구하기
+df['누적_외국인순매매량'][0] = df['외국인순매매량'][0]
+for i in range(1, len(df.종가)):
+    df['누적_외국인순매매량'][i] = df['누적_외국인순매매량'][i-1] + df['외국인순매매량'][i]
+
+# 확인
+print(df.shape)
+print(df.head(3))
+print('\n', df.tail(3))
