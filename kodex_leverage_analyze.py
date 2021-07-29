@@ -13,6 +13,7 @@
 """
 # Python에서 엑셀 파일을 읽으려면 openpyxl 모듈 설치 해야함
 import pandas as pd
+import numpy as np
 
 xl_path = 'C:\PythonWorkspace\Linked_in_Git\\finance_data_analysis\kodex_leverage.xlsx'
 
@@ -55,3 +56,14 @@ for i in range(1, len(df.종가)):
 print(df.shape)
 print(df.head(3))
 print('\n', df.tail(3))
+
+
+# 종가와 다른 지표들의 상관계수 구하기
+print('\n종가와 거래량 상관계수 : ', np.corrcoef(df.종가, df.거래량)[0,1])
+print('종가와 기관순매매량 상관계수 : ', np.corrcoef(df.종가, df.기관순매매량)[0,1])
+print('종가와 외국인순매매량 상관계수 : ', np.corrcoef(df.종가, df.외국인순매매량)[0,1])
+print('종가와 누적_기관순매매량 상관계수 : ', np.corrcoef(df.종가, df.누적_기관순매매량)[0,1])
+print('종가와 누적_외국인순매매량 상관계수 : ', np.corrcoef(df.종가, df.누적_외국인순매매량)[0,1])
+
+
+# 종가와 상관계수가 가장 높은 지표인 누적_기관순매매량을 분석 대상으로 삼음
